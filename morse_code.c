@@ -91,7 +91,6 @@ char *strupr(char *str)
 }
 
 void main(){
-    setup();
     /* 
         * call setup() function.
         * Declare a character array of length 3 to take input for "SOS".
