@@ -5,13 +5,11 @@
 
 #define BuzzerPin 3
 
-// This data type structure is used to store morse code value of single character
 struct MORSE{
     char word;
     unsigned char *code;
 };
 
-// This is the lookup table for Morse code signals
 struct MORSE morseDict[]=
 {
     {'A',"01"}, {'B',"1000"}, {'C',"1010"}, {'D',"100"}, {'E',"0"}, 
@@ -25,7 +23,6 @@ struct MORSE morseDict[]=
     {';',"101010"},{'!',"101011"}, {'@',"011010"}, {':',"111000"}
 };
 
-// This function is a lookup function where we lookup the morse code for each character in string
 char *lookup(char key,struct MORSE *dict,int length)
 {
     for (int i=0;i<length;i++)
@@ -36,7 +33,6 @@ char *lookup(char key,struct MORSE *dict,int length)
     }    
 }
 
-// 
 void setup()
 {
     if (wiringPiSetup() == -1)
@@ -69,27 +65,26 @@ void morsecode(char *code){
     for (int i=0;i<strlen(code);i++)
     {
         point=lookup(code[i],morseDict,length);
-        for (int j=0;j< /* Iterate j less than length of point*/;j++){
-            /*
-               * check here if j of point is equal to 0 then pass pause/2 in beep function 
-               * else if point[j] is 1 then pass pause in beep function
-            */
+        for (int j=0;j<strlen(point);j++){
+            if (point[j]=='0')
+            {
+                beep(pause/2);
+            }else if(point[j]=='1')
+            {
+                beep(pause);
+            }
             delay(pause);
         }
     }
 }
 
-// This function convert each single character in upper case
 int toupper(int c)
 {
-   /*
-      * Capitalize the character c in this function
-      * Hint: refer to https://www.asciitable.com/ for acii value of each character
-      * convert to capital letter
-   */
+    if ((c >= 'a') && (c <= 'z'))
+        return c + ('A' - 'a');
+    return c;
 }
 
-// This function converts string to all caps
 char *strupr(char *str)
 {
     char *orign=str;
@@ -99,17 +94,17 @@ char *strupr(char *str)
 }
 
 void main(){
-    /* 
-        * call setup() function.
-        * Declare a character array of length 3 to take input for "SOS".
-        * Create an infinite while loop
-        * Inside while loop write the following lines of code 
-        * print message "Please input the messenger:"
-        * delay by 100 millisecond
-        * take string input from keyboard 
-        * process the the string received from keyboard using strupr function e.g. inputString = strupr(inputString)
-        * print the processed string
-        * delay by 100 millisecond
-        * pass the processed string into the morsecode function e.g. morsecode(inputString)
-    */
+    setup();
+    char *code;
+    int length=8;
+    code = (char*)malloc(sizeof(char)*length);
+    while (1){
+        printf("Please input the messenger:");
+        delay(100);
+        scanf("%s",code);
+        code=strupr(code);
+        printf("%s\n",code);
+        delay(100);
+        morsecode(code);
+    }
 }
