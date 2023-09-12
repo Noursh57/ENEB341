@@ -74,17 +74,10 @@ void morsecode(char *code){
         /* Iterate j less than length of point*/
         for (int j=0;j<;j++){
 
-            /*
-               * check here if j of point is equal to 0 then pass pause/2 in beep function 
-               * else if point[j] is 1 then pass pause in beep function
+            /*  TODO:
+                check here if j of point is equal to 0 then pass pause/2 in beep function 
+                else if point[j] is 1 then pass pause in beep function
             */
-            if (point[j]=='0')
-            {
-                beep(pause/2);
-            }else if(point[j]=='1')
-            {
-                beep(pause);
-            }
             delay(pause);
         }
     }
@@ -93,7 +86,7 @@ void morsecode(char *code){
 // This function convert each single character in upper case
 int toupper(int c)
 {
-    i/*
+    /* TODO:
       * Capitalize the character c in this function
       * Hint: refer to https://www.asciitable.com/ for acii value of each character
       * convert to capital letter
@@ -110,7 +103,7 @@ char *strupr(char *str)
 }
 
 int main(){
-     /* 
+     /* TODO:
         * call setup() function.
         * Declare a character array of length 3 to take input for "SOS".
         * Create an infinite while loop
