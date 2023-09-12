@@ -5,11 +5,13 @@
 
 #define BuzzerPin 3
 
+// This data type structure is used to store morse code value of single character
 struct MORSE{
     char word;
     unsigned char *code;
 };
 
+// This is the lookup table for Morse code signals
 struct MORSE morseDict[]=
 {
     {'A',"01"}, {'B',"1000"}, {'C',"1010"}, {'D',"100"}, {'E',"0"}, 
@@ -23,6 +25,7 @@ struct MORSE morseDict[]=
     {';',"101010"},{'!',"101011"}, {'@',"011010"}, {':',"111000"}
 };
 
+// This function is a lookup function where we lookup the morse code for each character in string
 char *lookup(char key,struct MORSE *dict,int length)
 {
     for (int i=0;i<length;i++)
@@ -33,6 +36,7 @@ char *lookup(char key,struct MORSE *dict,int length)
     }    
 }
 
+// 
 void setup()
 {
     if (wiringPiSetup() == -1)
@@ -75,13 +79,17 @@ void morsecode(char *code){
     }
 }
 
+// This function convert each single character in upper case
 int toupper(int c)
 {
    /*
       * Capitalize the character c in this function
+      * Hint: refer to https://www.asciitable.com/ for acii value of each character
+      * convert to capital letter
    */
 }
 
+// This function converts string to all caps
 char *strupr(char *str)
 {
     char *orign=str;
