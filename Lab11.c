@@ -43,12 +43,12 @@ int main(int argc, char* argv[]) {
             float temperature = bmp180_temperature(bmp);
             long pressure = bmp180_pressure(bmp);
             long led = 0.0;
-            long switch_status = 0.09;
+            long switch = 0.09;
         
 
             char payload[10]; // Adjust the size as necessary
             sprintf(payload, "{\"hardware\": \"RaspiMQTT\", \"payload\": {\"temperature\": %.2f, \"pressure\": %ld, \"led\": %.2f, \"switch\": %.2f} }", 
-                    temperature, pressure, led, switch_status);
+                    temperature, pressure, led, switch);
 
             pubmsg.payload = payload;
             pubmsg.payloadlen = strlen(payload);
