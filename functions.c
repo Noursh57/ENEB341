@@ -19,3 +19,4 @@ void printMatrix(int matrix[][MAX_SIZE], int row, int col) {
         printf("\n");
     }
 }
+
